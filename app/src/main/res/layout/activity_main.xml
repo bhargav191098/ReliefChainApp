@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/backg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/backg3"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true">
 
@@ -27,13 +28,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="12"
+            app:counterTextAppearance="@style/TextLimitStyle"
+            app:counterOverflowTextAppearance="@style/TextLimitError"
+            >
 
             <EditText
-                android:id="@+id/input_email"
+                android:id="@+id/input_aadhar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
+                android:hint="@string/aadhar"
                 android:textColorHint="#FFF"
                 android:inputType="textEmailAddress"
                 android:textColor="#fff"
@@ -47,14 +53,19 @@
             android:layout_height="wrap_content"
             android:textColorHint="#FFF"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:counterTextAppearance="@style/TextLimitStyle"
+            app:counterOverflowTextAppearance="@style/TextLimitError"
+            >
 
             <EditText
-                android:id="@+id/input_password"
+                android:id="@+id/input_phone"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pass"
+                android:hint="@string/phonenum"
                 android:inputType="textPassword"
                 android:textColor="#FFF"
 
@@ -77,7 +88,7 @@
             android:layout_gravity="center_horizontal"
             />
 
-        <TextView android:id="@+id/link_signup"
+        <!--<TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -87,6 +98,8 @@
             android:onClick="click"
             android:gravity="center"
             android:textSize="16dip"/>
+        */
+        --> <!-- register editText -->
 
     </LinearLayout>
 </ScrollView>
