@@ -1,5 +1,6 @@
 package u.com.example.reliefchain;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String aadhar = aadhar_field.getText().toString();
                 final String mobile = mobile_field.getText().toString();
-
+                Intent i = new Intent();
                 Log.d("output",url);
                 MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
