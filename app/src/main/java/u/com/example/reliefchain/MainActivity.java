@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String aadhar = aadhar_field.getText().toString();
                 final String mobile = mobile_field.getText().toString();
-                Intent i = new Intent();
+                Intent intent = new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intent);
                 Log.d("output",url);
                 MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
