@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashBoard"></activity>
+        <activity android:name=".DashBoard" />
+        <activity android:name=".BlockChain" />
+        <activity android:name=".Personal"></activity>
     </application>
 
 </manifest>

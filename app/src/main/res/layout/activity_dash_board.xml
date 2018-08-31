@@ -76,7 +76,7 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
-            android:id="@+id/techquiz"
+            android:id="@+id/personal"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="10dp">
