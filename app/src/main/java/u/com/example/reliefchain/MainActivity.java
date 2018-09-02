@@ -10,17 +10,22 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     public EditText aadhar_field;
@@ -43,20 +48,24 @@ public class MainActivity extends AppCompatActivity {
         mobile_field = (EditText) findViewById(R.id.input_phone);
         submit = (Button)findViewById(R.id.btn_login);
         MyRequestQueue = Volley.newRequestQueue(this);
-        url = "http://192.168.43.94:5000/login";
+        url = "http://192.168.0.108:5000/login";
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String aadhar = aadhar_field.getText().toString();
                 final String mobile = mobile_field.getText().toString();
-                Intent intent = new Intent(getApplicationContext(),DashBoard.class);
-                startActivity(intent);
+                String res;
+                final Intent intent = new Intent(getApplicationContext(),DashBoard.class);
                 Log.d("output",url);
                 MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         Log.d("sysres",response);
+                        if(response.equals("1"))
+                            startActivity(intent);
+                        else{
+                            Toast.makeText(getApplicationContext(),"Oops!Wrong",Toast.LENGTH_LONG).show();
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -79,6 +88,63 @@ public class MainActivity extends AppCompatActivity {
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                 MyRequestQueue.add(MyStringRequest);
+                Log.d("outside","creation");
+                /*JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                        Request.Method.GET,
+                        url,
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Do something with response
+                                //mTextView.setText(response.toString());
+                                Log.d("hey","dei are you here");
+                                // Process the JSON
+                                try{
+                                    Log.d("inside",response.toString());
+                                    // Get the JSON array
+                                    //JSONObject array = response.getJSONObject(aadhar);
+                                    String a = response.getString(aadhar);
+                                    Log.d("helloooo",a);
+                                    // Loop through the array elements
+                                    //for(int i=0;i<array.length();i++){
+                                        // Get current json object
+                                        //JSONObject student = array.getJSONObject(i);
+
+                                        // Get the current student (json object) data
+                                        //String firstName = student.getString(aadhar);
+                                        //String lastName = student.getString("lastname");
+                                        //String age = student.getString("age");
+                                        //Log.d("hello",firstName);
+                                        // Display the formatted json data in text view
+                                        //mTextView.append(firstName +" " + lastName +"\nage : " + age);
+                                        //mTextView.append("\n\n");
+                                    //}
+                                }catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener(){
+                            @Override
+                            public void onErrorResponse(VolleyError error){
+                                // Do something when error occurred
+                                Log.d("error",error.toString());
+
+                            }
+                        }
+                );
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        5000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+
+                // Add JsonObjectRequest to the RequestQueue
+                MyRequestQueue.add(jsonObjectRequest);
+                */
+
+                //startActivity(intent);
 
 
             }
