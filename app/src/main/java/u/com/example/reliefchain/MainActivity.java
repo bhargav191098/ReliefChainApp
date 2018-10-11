@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
                         },
                         new Response.ErrorListener(){
                             @Override
-                            public void onErrorResponse(VolleyError error){
+                            public void onErroerResponse(VolleyError error){
                                 // Do something when error occurred
-                                Log.d("error",error.toString());
+                                Log.d("error",rror.toString());
 
                             }
                         }
