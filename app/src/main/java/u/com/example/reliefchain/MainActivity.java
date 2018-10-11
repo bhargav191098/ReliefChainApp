@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mobile_field = (EditText) findViewById(R.id.input_phone);
         submit = (Button)findViewById(R.id.btn_login);
         MyRequestQueue = Volley.newRequestQueue(this);
-        url = "http://192.168.0.108:5000/login";
+        url = "http://192.168.0.108:3000/login";
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
