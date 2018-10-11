@@ -1,6 +1,7 @@
 package u.com.example.reliefchain;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         aadhar_field= (EditText) findViewById(R.id.input_aadhar);
         mobile_field = (EditText) findViewById(R.id.input_phone);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
         submit = (Button)findViewById(R.id.btn_login);
         MyRequestQueue = Volley.newRequestQueue(this);
         url = "http://192.168.0.108:3000/login";
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String aadhar = aadhar_field.getText().toString();
                 final String mobile = mobile_field.getText().toString();
+                editor.putString("aadhar",aadhar);
+                editor.apply();
                 String res;
                 final Intent intent = new Intent(getApplicationContext(),DashBoard.class);
                 Log.d("output",url);
