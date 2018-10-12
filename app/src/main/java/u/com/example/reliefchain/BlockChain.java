@@ -1,5 +1,9 @@
 package u.com.example.reliefchain;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +46,19 @@ public class BlockChain extends AppCompatActivity {
         final TextView trans = (TextView)findViewById(R.id.desc);
         url = "http://192.168.0.108:5000/chain";
         final TextView chain = (TextView)findViewById(R.id.desc);
+        Intent intent = new Intent(this, Personal.class);
+// use System.currentTimeMillis() to have a unique ID for the pending intent
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+// build notification
+// the addAction re-use the same intent to keep the example short
+        final Notification n  = new Notification.Builder(this)
+                .setContentTitle("Blockchain")
+                .setContentText("You have money notification!")
+                .setSmallIcon(R.drawable.blockchain)
+                .setContentIntent(pIntent)
+                .setAutoCancel(true)
+                .build();
         Log.d("output", url);
         /*MyStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -100,6 +117,13 @@ public class BlockChain extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(),"Go collect Money",Toast.LENGTH_LONG).show();
                                             final SharedPreferences.Editor editor = pref.edit();
                                             editor.putString("tag","1");
+                                            editor.putString("sender1",sender);
+                                            editor.putInt("amt1",amt);
+                                            editor.apply();
+                                            NotificationManager notificationManager =
+                                                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                            Log.d("notif","what");
+                                            notificationManager.notify(0, n);
                                         }
                                         String text = "Sender: "+sender+"\n"+"Recipient: "+rec+"\n"+"amount :"+amt+"\n";
                                         trans.append(text);
