@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 final String aadhar = aadhar_field.getText().toString();
                 final String mobile = mobile_field.getText().toString();
                 editor.putString("aadhar",aadhar);
+                editor.putString("phone",mobile);
                 editor.apply();
                 String res;
                 final Intent intent = new Intent(getApplicationContext(),DashBoard.class);

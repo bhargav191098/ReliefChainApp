@@ -25,7 +25,7 @@ public class DashBoard extends AppCompatActivity {
         personal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),BlockChain.class);
+                Intent intent = new Intent(getApplicationContext(),Personal.class);
                 startActivity(intent);
             }
         });

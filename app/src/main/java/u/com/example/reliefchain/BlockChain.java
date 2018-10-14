@@ -126,6 +126,7 @@ public class BlockChain extends AppCompatActivity {
                                             notificationManager.notify(0, n);
                                         }
                                         String text = "Sender: "+sender+"\n"+"Recipient: "+rec+"\n"+"amount :"+amt+"\n";
+                                        text = text +"******"+"\n";
                                         trans.append(text);
 
 
